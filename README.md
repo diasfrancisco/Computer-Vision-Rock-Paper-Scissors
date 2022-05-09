@@ -10,4 +10,4 @@ Prior to download the model was converted to a keras .h5 model in the cloud. Aft
 
 ## Milestone 3
 
-To achieve milestone 3, I had to edit the README file (the current file you are viewing) to document the use of this model in the current project. The current model will be run in a new virtual environment on my local machine, with multiple iterations looking to add features such as user & computer inputs, win screens, a countdown timer, repetiion until one party achieves 3 wins, game simulation and further optional features.
+To achieve milestone 3, I had to edit the README file (the current file you are viewing) to document the use of this model in the current project. The current model will be run in a new virtual environment on my local machine, with multiple iterations looking to add features such as user & computer inputs, win screens, a countdown timer, repetition until one party achieves 3 wins, game simulation and further optional features.
