@@ -1,0 +1,69 @@
+import all modules
+
+def welcomeMessage():
+    read in the background image
+    resize the background image
+
+    while True:
+        display the welcome message in a seperate window with the background image
+        if user presses s:
+            Start()
+            break
+        if user presses q:
+            break
+
+    cap.release
+    cv2.destroyAllWindows
+
+def Start():
+    round_counter = 0
+
+    def Round(round_counter):
+        countdown = 5
+
+        start_time = time.time()
+        time_elapsed = (time.time() - start_time)
+
+        model = display the model
+        cap = display video being captured
+        data = create an array to save the incoming data
+        
+        while True:
+            ret, frame = cap.read
+            resized_frame = resize the incoming frame
+            image_np = save resized frame as an array
+            normalized_image = normalize the image
+            data[0] = normalized_image
+            prediction = model.predict(data)
+            if prediction[0][0] > 0.8:
+                cv2.putText(display 'You: Rock')
+            elif prediction[0][0] > 0.8:
+                cv2.putText(display 'You: Paper')
+            elif prediction[0][0] > 0.8:
+                cv2.putText(display 'You: Scissors')
+            else:
+                cv2.putText(display 'You: Nothing')
+
+            cv2.putText(display new countdown timer)
+            if time_elapsed == 1:
+                countdown -= 1
+            cv2.imshow('Rock, Paper, Scissors', frame)
+
+    def Ready(round_counter):
+        round_counter += 1
+        cap = display video being captured
+
+        while True:
+            cv2.putText(display round number and a message asking if the user is ready (y for yes and n for no))
+            if user presses y:
+                Round()
+                return round_counter
+            if user presses n:
+                break
+
+        cap.release
+        cv2.destroyAllWindows
+    
+    Ready(round_counter)
+
+welcomeMessage()
