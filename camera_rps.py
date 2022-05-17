@@ -147,15 +147,15 @@ def Round(round_counter, user_wins, computer_wins):
         if time_elapsed > 7 and time_elapsed < 12:
             # Conditions for the User to be the winner
             if (get_computer_choice == 'Rock' and get_user_choice == 'Paper') or (get_computer_choice == 'Paper' and get_user_choice == 'Scissors') or (get_computer_choice == 'Scissors' and get_user_choice == 'Rock'):
-                cv2.putText(frame, 'The winner is User', (120,150), font, 1, (255,255,255), 2, cv2.LINE_4)
+                cv2.putText(frame, 'The winner is User', (150,400), font, 1, (255,255,255), 2, cv2.LINE_4)
                 winner = 'User'
             # Conditions for the Computer to be the winner
             elif (get_computer_choice == 'Paper' and get_user_choice == 'Rock') or (get_computer_choice == 'Scissors' and get_user_choice == 'Paper') or (get_computer_choice == 'Rock' and get_user_choice == 'Scissors'):
-                cv2.putText(frame, 'The winner is Computer', (120,150), font, 1, (255,255,255), 2, cv2.LINE_4)
+                cv2.putText(frame, 'The winner is Computer', (120,400), font, 1, (255,255,255), 2, cv2.LINE_4)
                 winner = 'Computer'
             # Conditions for a draw
             else:
-                cv2.putText(frame, 'It was a draw', (120,150), font, 1, (255,255,255), 2, cv2.LINE_4)
+                cv2.putText(frame, 'It was a draw', (180,400), font, 1, (255,255,255), 2, cv2.LINE_4)
 
         cv2.putText(frame, 'User wins: ' + str(user_wins), (5, 475), font, 1, (0,255,255), 2, cv2.LINE_4) # Display user wins
         cv2.putText(frame, 'Computer wins: ' + str(computer_wins), (335, 475), font, 1, (0,255,255), 2, cv2.LINE_4) # Display computer wins
