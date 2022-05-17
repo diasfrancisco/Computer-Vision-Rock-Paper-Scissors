@@ -196,9 +196,9 @@ def Ready(round_counter, user_wins, computer_wins):
     while True:
         # Prints the ready message
         font = cv2.FONT_HERSHEY_COMPLEX
-        cv2.putText(welcome_img_resized, 'Round ' + str(round_counter), (250, 30), font, 1, (255,0,0), 2, cv2.LINE_4)
-        cv2.putText(welcome_img_resized, 'Are you ready?', (190, 60), font, 1, (255,0,0), 2, cv2.LINE_4)
-        cv2.putText(welcome_img_resized, 'Press [y] for yes or [n] for no', (50, 90), font, 1, (255,0,0), 2, cv2.LINE_4)
+        cv2.putText(welcome_img_resized, 'Round ' + str(round_counter), (250, 160), font, 1, (255,0,0), 2, cv2.LINE_4)
+        cv2.putText(welcome_img_resized, 'Are you ready?', (190, 240), font, 1, (255,0,0), 2, cv2.LINE_4)
+        cv2.putText(welcome_img_resized, 'Press [y] for yes or [n] for no', (50, 280), font, 1, (255,0,0), 2, cv2.LINE_4)
         cv2.imshow('Rock, Paper, Scissors!', welcome_img_resized) # Displays the video feed in a window labelled 'Rock, Paper, Scissors!'
 
         # Press n to return to the welcome page
