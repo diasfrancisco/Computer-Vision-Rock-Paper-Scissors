@@ -8,6 +8,28 @@ from keras.models import load_model
 
 round_counter = 0
 
+def Error(ret):
+    error_img = cv2.imread('/home/diasfrancisco/GitLocal/Computer-Vision-Rock-Paper-Scissors/images/Error.jpg') # Reads in the error image
+    error_img_resized = cv2.resize(error_img, (640, 480), interpolation=INTER_AREA) # Resizes the image
+
+    # Display the error message depending on the error type
+    while True:
+        font = FONT_HERSHEY_COMPLEX
+        if ret == False:
+            cv2.putText(error_img_resized, 'Error!', (280,350), font, 1, (255,255,255), 2, cv2.LINE_4)
+            cv2.putText(error_img_resized, 'Missing video feed', (170,380), font, 1, (255,255,255), 2, cv2.LINE_4)
+            cv2.putText(error_img_resized, 'Press [t] to try again', (150,450), font, 1, (255,255,255), 2, cv2.LINE_4)
+        cv2.imshow('Error!', error_img_resized)
+
+        # Pressing 't' to try again
+        if cv2.waitKey(1) & 0xFF == ord('t'):
+            break
+        
+    if ret == False:
+        Error(ret)
+    else:
+        pass
+
 def win_Screen(user_wins, computer_wins):
     welcome_img = cv2.imread('/home/diasfrancisco/GitLocal/Computer-Vision-Rock-Paper-Scissors/images/rps_bkg.jpg') # Reads in the background image
     welcome_img_resized = cv2.resize(welcome_img, (640, 480), interpolation=INTER_AREA) # Resizes the image
@@ -20,7 +42,7 @@ def win_Screen(user_wins, computer_wins):
         elif computer_wins == 3:
             cv2.putText(welcome_img_resized, 'The winner is Computer!', (105,150), font, 1, (0,0,0), 2, cv2.LINE_4)
         cv2.putText(welcome_img_resized, 'Press [r] to restart', (150,250), font, 1, (0,0,0), 2, cv2.LINE_4)
-        cv2.putText(welcome_img_resized, 'or [q] to quit', (180,290), font, 1, (0,0,0), 2, cv2.LINE_4)
+        cv2.putText(welcome_img_resized, 'or [q] to quit', (200,290), font, 1, (0,0,0), 2, cv2.LINE_4)
         cv2.imshow('Rock, Paper, Scissors!', welcome_img_resized)
 
         # Press 'r' to restart
@@ -77,6 +99,10 @@ def Round(round_counter, user_wins, computer_wins):
     while True:
         # Reads 'cap' and splits the information to store 'ret' (tells us if the frame is available) as a boolean and the 'frame' as an image array vector captured using the default fps defined
         ret, frame = cap.read()
+        if ret == False:
+            Error(ret)
+        else:
+            pass
         # Takes the frame and resizes it using cv2's interpolation method called 'INTER_AREA'
         resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
         # Stores the resized frame as an array in the variable 'image_np'
