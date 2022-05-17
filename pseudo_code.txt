@@ -1,8 +1,55 @@
 import all modules
 
-def welcomeMessage():
+round_counter = 0
+
+def Error(ret):
     read in the background image
     resize the background image
+
+    while True:
+        set the font
+        if ret == False:
+            cv2.putText(Error!)
+            cv2.putText(Missing video feed)
+            cv2.putText(press t to try again)
+        cv2.imshow()
+
+        if user presses t:
+            break
+    
+    if ret == False:
+        Error(ret)
+    else:
+        pass
+
+def win_Screen(user_wins, computer_wins):
+    read in the background image
+    resize the background image
+
+    while True:
+        set the font
+        if user_wins == 3:
+            cv2.putText(display the winner is User)
+        elif computer_wins == 3:
+            cv2.putText(display the winner is Computer)
+        cv2.putText(press r to restart)
+        cv2.putText(press q to quit)
+        cv2.imshow()
+
+        if user presses r:
+            Welcome()
+        if user presses q:
+            break
+
+    cv2.destroyAllWindows()
+    exit()
+
+def Welcome():
+    read in the background image
+    resize the background image
+
+    user_wins = 0
+    computer_wins = 0
 
     while True:
         display the welcome message in a seperate window with the background image
@@ -12,58 +59,86 @@ def welcomeMessage():
         if user presses q:
             break
 
-    cap.release
     cv2.destroyAllWindows
+    exit()
 
-def Start():
-    round_counter = 0
+def Round(round_counter, user_wins, computer_wins):
+    model = display the model
+    cap = display video being captured
+    data = create an array to save the incoming data
 
-    def Round(round_counter):
-        countdown = 5
+    rps_List = list of rps choices
+    get_computer_choice = gets a random rps choice
+    get_user_choice = ''
 
-        start_time = time.time()
-        time_elapsed = (time.time() - start_time)
+    winner = ''
 
-        model = display the model
-        cap = display video being captured
-        data = create an array to save the incoming data
-        
-        while True:
-            ret, frame = cap.read
-            resized_frame = resize the incoming frame
-            image_np = save resized frame as an array
-            normalized_image = normalize the image
-            data[0] = normalized_image
-            prediction = model.predict(data)
-            if prediction[0][0] > 0.8:
-                cv2.putText(display 'You: Rock')
-            elif prediction[0][0] > 0.8:
-                cv2.putText(display 'You: Paper')
-            elif prediction[0][0] > 0.8:
-                cv2.putText(display 'You: Scissors')
-            else:
-                cv2.putText(display 'You: Nothing')
-
-            cv2.putText(display new countdown timer)
-            if time_elapsed == 1:
-                countdown -= 1
-            cv2.imshow('Rock, Paper, Scissors', frame)
-
-    def Ready(round_counter):
-        round_counter += 1
-        cap = display video being captured
-
-        while True:
-            cv2.putText(display round number and a message asking if the user is ready (y for yes and n for no))
-            if user presses y:
-                Round()
-                return round_counter
-            if user presses n:
-                break
-
-        cap.release
-        cv2.destroyAllWindows
+    countdown = 5
+    start_time = time.time()
     
-    Ready(round_counter)
+    while True:
+        ret, frame = cap.read
+        if ret == False:
+            Error(ret)
+        else:
+            pass
+        resized_frame = resize the incoming frame
+        image_np = save resized frame as an array
+        normalized_image = normalize the image
+        data[0] = normalized_image
+        prediction = model.predict(data)
+        cv2.putText(display the round number)
+        time_elapsed = int(time.time() - start_time)
+        if countdown is between 0 to 5:
+            cv2.putText(display the countdown)
+
+        if time_elapsed > 5:
+            cv2.putText(display the computer choices)
+            if prediction[x][y] > 0.8:
+                cv2.putText(display the user's choice)
+
+        if time_elapsed == 6:
+            if get_user_choice == x and get_computer_choice == y:
+                cv2.putText(display the user is the winner)
+            elif get_user_choice == y and get_computer_choice == x:
+                cv2.putText(display the computer is the winner)
+            else:
+            cv2.putText(display that it was a draw)
+
+        cv2.putText(display the user wins)
+        cv2.putText(display the computer wins)
+        cv2.imshow('Rock, Paper, Scissors', frame)
+
+        if time_elapsed == 12:
+            break
+        
+        if user holds the q key down for 1ms:
+            break
+
+    if winner == 'User':
+        user_wins += 1
+    elif winner == 'Computer':
+        computer_wins += 1
+    else:
+        pass
+
+def Ready(round_counter):
+    if user_wins == 3:
+        win_Screen(user_wins, computer_wins)
+    else:
+        pass
+
+    round_counter += 1
+    cap = display video being captured
+
+    while True:
+        cv2.putText(display round number and a message asking if the user is ready (y for yes and n for no))
+        if user presses y:
+            Round()
+            return round_counter
+        if user presses n:
+            break
+    
+    Ready(round_counter, user_wins, computer_wins)
 
 welcomeMessage()
